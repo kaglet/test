@@ -1,3 +1,10 @@
+name: Flutter CI
+# This workflow is triggered on pushes to the main repository.
+on: [push, pull_request]
+jobs:
+    build:
+        # This job will run on ubuntu virtual machine
+      runs-on: ubuntu-latest
       # Within steps define actions we either explicitly write as flutter commands, or ones we get from the marketplace
       steps:
         # Setup Java environment in order to build the Android app.
