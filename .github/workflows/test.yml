@@ -1,17 +1,5 @@
-name: Flutter CI
-
-# This workflow is triggered on pushes to the main repository.
-
-on: [push, pull_request]
-
-jobs:
-    build:
-        # This job will run on ubuntu virtual machine
-      runs-on: ubuntu-latest
-
       # Within steps define actions we either explicitly write as flutter commands, or ones we get from the marketplace
       steps:
-
         # Setup Java environment in order to build the Android app.
         - name: Checkout the code
           uses: actions/checkout@v3
@@ -19,7 +7,6 @@ jobs:
           with:
             java-version: '12.x'
             distribution: 'zulu'
-
         # Setup the flutter environment.
         - name: Install and set flutter version
           uses: subosito/flutter-action@v2
@@ -41,19 +28,12 @@ jobs:
         # Run widget tests for our flutter project.
         - name: Run tests
           run: flutter test --coverage
-
-        - name: Upload coverage reports to Codecov
-          uses: codecov/codecov-action@v3
-          
         # Build apk
         - name: Build apk
-          run: flutter build apk --split-per-abi
-
-        # Upload apk as artifact
-        - name: Upload APK as artifact
-          uses: actions/upload-artifact@v1
+          run: flutter build apk
+        - uses: actions/upload-artifact@v1
           with:
             # Name of the command/step.
-            name: app-release.apk
+            name: release-apk
             # Path to the release apk.
-            path: build/app/outputs/flutter-apk/app-release.apk
+            path: build/app/outputs/apk/release/app-release.apk
