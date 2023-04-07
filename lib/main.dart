@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:test/home.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:test/firebase_options.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
