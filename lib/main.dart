@@ -14,7 +14,6 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-void main() {
   runApp(MaterialApp(
     theme: ThemeData(
       appBarTheme: const AppBarTheme(
